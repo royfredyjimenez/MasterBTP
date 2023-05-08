@@ -1,6 +1,6 @@
 specVersion: "2.6"
 metadata:
-  name: logaligroup.product
+  name: com.logali.es.product1
 type: application
 server:
   customMiddleware:
@@ -22,5 +22,5 @@ server:
     - name: fiori-tools-preview
       afterMiddleware: fiori-tools-appreload
       configuration:
-        component: logaligroup.product
+        component: com.logali.es.product1
         ui5Theme: sap_fiori_3

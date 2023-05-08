@@ -6,23 +6,41 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@graphql-tools/schema": "^9.0.14",
-    "@sap-cloud-sdk/http-client": "^2.14.0",
+    "@cap-js/graphql": "^0.5.0",
+    "@graphql-tools/schema": "^9.0.17",
+    "@sap-cloud-sdk/http-client": "^2.15.0",
+    "@sap/artifact-management": "^1.11.1",
+    "@sap/artifact-management-base": "^1.20.2",
+    "@sap/artifact-management-base-types": "^1.20.2",
+    "@sap/artifact-management-mdkplugin": "^1.20.2",
     "@sap/cds": "^6",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.9.18",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.7",
+    "@sap/create-hana-database-artifact": "^1.10.0",
+    "@sap/hdbext": "^7.7.2",
+    "@sap/xsenv": "^3.4.0",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4",
-    "hdb": "^0.19.0"
+    "express-graphql": "^0.12.0",
+    "graph": "^0.2.0",
+    "hdb": "^0.19.5",
+    "swagger-ui-express": "^4.6.2"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.96.0",
+    "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
+    "@sap/ux-specification": "^1.108.1",
     "@sapui5/ts-types": "^1.92.2",
-    "cds-swagger-ui-express": "^0.3.0",
+    "cds-swagger-ui-express": "^0.6.0",
     "eslint": "^7.32.0",
+    "rimraf": "^3.0.2",
     "sqlite3": "^5.0.4"
   },
   "scripts": {
-    "start": "cds run"
+    "start": "cds watch",
+    "watch-product1": "cds watch --open product1/webapp/index.html?sap-ui-xx-viewCache=false",
+    "undeploy": "cf undeploy cap-products --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
   },
   "engines": {
     "node": "^16.15"
@@ -64,6 +82,12 @@
     "features": {
       "graphql": true
     },
+    "protocols": {
+      "graphql": {
+        "path": "/graphql",
+        "impl": "@cap-js/graphql"
+      }
+    },
     "requires": {
       "db": {
         "kind": "hana-cloud"
@@ -77,9 +101,6 @@
           "authentication": "NoAuthentication"
         }
       }
-    },
-    "hana": {
-      "deploy-format": "hdbtable"
     }
   },
   "sapux": [

@@ -15,34 +15,40 @@ type address {
     Country    : String(3);
 };
 
+type Email       : array of {
+    kind  : String;
+    email : String;
+}
+
 context materials {
     entity Products : cuid, managed {
-        Name             : localized String not null;
-        Description      : localized String;
-        ImageUrl         : String;
-        ReleaseDate      : DateTime default $now;
-        CreationDate     : Date default CURRENT_DATE;
-        DiscontinuedDate : DateTime;
-        Price            : Decimal(16, 2);
-        Height           : type of Price; //Decimal(16, 2);
-        Width            : Decimal(16, 2);
-        Depth            : Decimal(16, 2);
-        Quantity         : Decimal(16, 2);
-        Supplier         : Association to sales.Suppliers;
-        UnitOfMeasure    : Association to UnitOfMeasures;
-        Currency         : Association to Currencies;
-        DimensionUnits   : Association to DimensionUnits;
-        Category         : Association to Categories;
-        SalesData        : Association to many sales.SalesData
-                               on SalesData.Product = $self;
-        Reviews          : Association to many ProductReview
-                               on Reviews.Product = $self;
+        key ID               : UUID;
+            Name             : localized String not null;
+            Description      : localized String;
+            ImageUrl         : String;
+            ReleaseDate      : DateTime default $now;
+            CreationDate     : Date default CURRENT_DATE;
+            DiscontinuedDate : DateTime;
+            Price            : Decimal(16, 2);
+            Height           : type of Price; //Decimal(16, 2);
+            Width            : Decimal(16, 2);
+            Depth            : Decimal(16, 2);
+            Quantity         : Decimal(16, 2);
+            Supplier         : Association to sales.Suppliers;
+            UnitOfMeasure    : Association to UnitOfMeasures;
+            Currency         : Association to Currencies;
+            DimensionUnits   : Association to DimensionUnits;
+            Category         : Association to Categories;
+            SalesData        : Association to many sales.SalesData
+                                   on SalesData.Product = $self;
+            Reviews          : Association to many ProductReview
+                                   on Reviews.Product = $self;
     };
 
     entity Categories {
         key ID   : String(1);
             Name : localized String;
-    };
+    }; 
 
     entity StockAvailability {
         key ID          : Integer;
@@ -66,10 +72,11 @@ context materials {
     };
 
     entity ProductReview : cuid, managed {
-        Name    : String;
-        Rating  : Integer;
-        Comment : String;
-        Product : Association to materials.Products;
+        key ID      : UUID;
+            Name    : String;
+            Rating  : Integer;
+            Comment : String;
+            Product : Association to materials.Products;
     };
 
     entity SelProducts   as select from materials.Products;
@@ -118,10 +125,11 @@ context materials {
 context sales {
 
     entity Orders : cuid {
-        Date     : Date;
-        Customer : String;
-        Item     : Composition of many OrderItems
-                       on Item.Order = $self;
+        key ID       : UUID;
+            Date     : Date;
+            Customer : String;
+            Item     : Composition of many OrderItems
+                           on Item.Order = $self;
     };
 
     entity OrderItems : cuid {
@@ -131,21 +139,23 @@ context sales {
     };
 
     entity Suppliers : cuid, managed {
-        Name    : type of materials.Products : Name;
-        Address : address;
-        Email   : String;
-        Phone   : String;
-        Fax     : String;
-        Product : Association to many materials.Products
-                      on Product.Supplier = $self;
+        key ID      : UUID;
+            Name    : type of materials.Products : Name;
+            Address : address;
+            Email   : String default 'correo@logaligroup.com';
+            Phone   : String;
+            Fax     : String;
+            Product : Association to many materials.Products
+                          on Product.Supplier = $self;
     };
 
     entity SalesData : cuid, managed {
-        DeliveryDate  : DateTime;
-        Revenue       : Decimal(16, 2);
-        Product       : Association to materials.Products;
-        Currency      : Association to materials.Currencies;
-        DeliveryMonth : Association to Months;
+        key ID            : UUID;
+            DeliveryDate  : DateTime;
+            Revenue       : Decimal(16, 2);
+            Product       : Association to materials.Products;
+            Currency      : Association to materials.Currencies;
+            DeliveryMonth : Association to Months;
     };
 
     entity Months {
