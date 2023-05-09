@@ -1,0 +1,8 @@
+COLUMN TABLE product_catalog_sales_Orders (
+  ID NVARCHAR(36) NOT NULL,
+  "DATE" DATE,
+  Customer NVARCHAR(5000),
+  PRIMARY KEY(ID)
+) WITH ASSOCIATIONS (
+  MANY TO MANY JOIN product_catalog_sales_OrderItems AS Item ON (Item.Order_ID = ID)
+)

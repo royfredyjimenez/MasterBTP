@@ -1,0 +1,11 @@
+VIEW CatalogService_Reviews AS SELECT
+  ProductReview_0.ID,
+  ProductReview_0.Name,
+  ProductReview_0.Rating,
+  ProductReview_0.Comment,
+  ProductReview_0.createdAt,
+  ProductReview_0.Product_ID AS ToProduct_ID
+FROM product_catalog_materials_ProductReview AS ProductReview_0
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN CatalogService_Products AS ToProduct ON (ToProduct.ID = ToProduct_ID)
+)

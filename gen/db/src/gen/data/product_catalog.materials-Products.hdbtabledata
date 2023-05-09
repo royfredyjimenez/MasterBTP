@@ -1,0 +1,49 @@
+{
+  "format_version": 1,
+  "imports": [
+    {
+      "target_table": "PRODUCT_CATALOG_MATERIALS_PRODUCTS",
+      "source_data": {
+        "data_type": "CSV",
+        "file_name": "product_catalog.materials-Products.csv",
+        "has_header": true,
+        "type_config": {
+          "delimiter": ";"
+        }
+      },
+      "import_settings": {
+        "import_columns": [
+          "ID",
+          "NAME",
+          "DESCRIPTION",
+          "IMAGEURL",
+          "RELEASEDATE",
+          "CREATIONDATE",
+          "DISCONTINUEDDATE",
+          "PRICE",
+          "HEIGHT",
+          "WIDTH",
+          "DEPTH",
+          "QUANTITY",
+          "SUPPLIER_ID"
+        ],
+        "include_filter": []
+      },
+      "column_mappings": {
+        "ID": "ID",
+        "NAME": "Name",
+        "DESCRIPTION": "Description",
+        "IMAGEURL": "ImageUrl",
+        "RELEASEDATE": "ReleaseDate",
+        "CREATIONDATE": "CreationDate",
+        "DISCONTINUEDDATE": "DiscontinuedDate",
+        "PRICE": "Price",
+        "HEIGHT": "Height",
+        "WIDTH": "Width",
+        "DEPTH": "Depth",
+        "QUANTITY": "Quantity",
+        "SUPPLIER_ID": "Supplier_ID"
+      }
+    }
+  ]
+}

@@ -121,18 +121,8 @@ define service CatalogService {
         from Product.materials.DimensionUnits;
 }
 
-define service Myservice {
-    entity SuppliersProduct as
-        select from Product.materials.Products[Name = 'Bread']{
-            *,
-            Name,
-            Description,
-            Supplier.Address
-        }
-        where
-            Supplier.Address.PostalCode = 98074;
-
-    entity SupliersToSales  as
+ service Myservice {
+      entity SupliersToSales  as
         select
             Supplier.Email,
             Category.Name,
@@ -140,20 +130,7 @@ define service Myservice {
             SalesData.Currency.Description
         from Product.materials.Products;
 
-    entity EntityInfix      as
-        select Supplier[Name = 'Exotic Liquids'].Phone from Product.materials.Products
-        where
-            Products.Name = 'Bread';
 
-    entity EntityJoin       as
-        select Phone from Product.materials.Products
-        left join Product.sales.Suppliers as supp
-            on(
-                supp.ID = Products.Supplier.ID
-            )
-            and supp.Name = 'Exotic Liquids'
-        where
-            Products.Name = 'Bread';
 }
 
 define service Reports {

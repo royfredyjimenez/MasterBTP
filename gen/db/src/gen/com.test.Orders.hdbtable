@@ -1,0 +1,9 @@
+COLUMN TABLE com_test_Orders (
+  ClientEmail NVARCHAR(65) NOT NULL,
+  FirstName NVARCHAR(30),
+  LastName NVARCHAR(30),
+  CreatedOn DATE,
+  Reviewed BOOLEAN,
+  Approved BOOLEAN,
+  PRIMARY KEY(ClientEmail)
+)

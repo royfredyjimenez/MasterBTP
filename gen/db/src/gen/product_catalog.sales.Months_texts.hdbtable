@@ -1,0 +1,7 @@
+COLUMN TABLE product_catalog_sales_Months_texts (
+  locale NVARCHAR(14) NOT NULL,
+  ID NVARCHAR(2) NOT NULL,
+  Description NVARCHAR(5000),
+  ShortDescription NVARCHAR(3),
+  PRIMARY KEY(locale, ID)
+)

@@ -1,0 +1,8 @@
+VIEW localized_product_catalog_sales_Orders AS SELECT
+  L.ID,
+  L."DATE",
+  L.Customer
+FROM product_catalog_sales_Orders AS L
+WITH ASSOCIATIONS (
+  MANY TO MANY JOIN localized_product_catalog_sales_OrderItems AS Item ON (Item.Order_ID = ID)
+)

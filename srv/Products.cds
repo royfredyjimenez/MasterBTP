@@ -106,6 +106,7 @@ service CatProd {
      */
 }
 service MyService {
+/*
     entity SuppliersProduct  as
         select from Product.materials.Products[Name = 'Bread']{
             *,
@@ -114,7 +115,7 @@ service MyService {
         }
         where
             Supplier.Address.PostalCode = 98074;
-
+*/
     entity SupplierToSales   as
         select
             Supplier.Email,
@@ -122,7 +123,7 @@ service MyService {
             SalesData.Currency.ID,
             SalesData.Currency.Description
         from Product.materials.Products;
-
+    /*
     entity EntityInfix       as
         select Supplier[Name = 'Exotic Liquids'].Phone from Product.materials.Products
         where
@@ -139,4 +140,5 @@ service MyService {
             )
         where
             Products.Name = 'Bread';
+*/
 }

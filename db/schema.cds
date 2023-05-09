@@ -139,7 +139,7 @@ context sales {
     };
 
     entity Suppliers : cuid, managed {
-        key ID      : UUID;
+       // key ID      : UUID;
             Name    : type of materials.Products : Name;
             Address : address;
             Email   : String default 'correo@logaligroup.com';

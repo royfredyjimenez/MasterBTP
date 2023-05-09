@@ -1,0 +1,4 @@
+VIEW localized_CatProd_VH_UnitOfMeasure AS SELECT
+  UnitOfMeasures_0.ID AS Code,
+  UnitOfMeasures_0.Description AS "TEXT"
+FROM localized_product_catalog_materials_UnitOfMeasures AS UnitOfMeasures_0

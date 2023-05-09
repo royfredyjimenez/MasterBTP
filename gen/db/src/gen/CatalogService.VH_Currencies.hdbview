@@ -1,0 +1,4 @@
+VIEW CatalogService_VH_Currencies AS SELECT
+  Currencies_0.ID AS Code,
+  Currencies_0.Description AS "TEXT"
+FROM product_catalog_materials_Currencies AS Currencies_0

@@ -1,0 +1,4 @@
+VIEW localized_CatalogService_VH_Categories AS SELECT
+  Categories_0.ID AS Code,
+  Categories_0.Name AS "TEXT"
+FROM localized_product_catalog_materials_Categories AS Categories_0

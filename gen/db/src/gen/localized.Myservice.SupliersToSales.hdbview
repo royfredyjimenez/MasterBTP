@@ -1,0 +1,6 @@
+VIEW localized_Myservice_SupliersToSales AS SELECT
+  Supplier_1.Email,
+  Category_2.Name,
+  Currency_4.ID,
+  Currency_4.Description
+FROM ((((localized_product_catalog_materials_Products AS Products_0 LEFT JOIN localized_product_catalog_sales_Suppliers AS Supplier_1 ON Products_0.Supplier_ID = Supplier_1.ID) LEFT JOIN localized_product_catalog_materials_Categories AS Category_2 ON Products_0.Category_ID = Category_2.ID) LEFT JOIN localized_product_catalog_sales_SalesData AS SalesData_3 ON (SalesData_3.Product_ID = Products_0.ID)) LEFT JOIN localized_product_catalog_materials_Currencies AS Currency_4 ON SalesData_3.Currency_ID = Currency_4.ID)

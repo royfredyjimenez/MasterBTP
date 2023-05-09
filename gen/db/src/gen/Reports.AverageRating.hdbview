@@ -1,0 +1,4 @@
+VIEW Reports_AverageRating AS SELECT
+  AverageRating_0.ProductId,
+  AverageRating_0.AverageRating
+FROM product_catalog_reports_AverageRating AS AverageRating_0

@@ -1,0 +1,4 @@
+VIEW CatalogService_VH_DimensionUnits AS SELECT
+  DimensionUnits_0.ID AS Code,
+  DimensionUnits_0.Description AS "TEXT"
+FROM product_catalog_materials_DimensionUnits AS DimensionUnits_0

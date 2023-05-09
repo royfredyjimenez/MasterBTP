@@ -1,0 +1,8 @@
+VIEW localized_product_catalog_materials_UnitOfMeasures AS SELECT
+  L_0.ID,
+  coalesce(localized_1.Description, L_0.Description) AS Description
+FROM (product_catalog_materials_UnitOfMeasures AS L_0 LEFT JOIN product_catalog_materials_UnitOfMeasures_texts AS localized_1 ON localized_1.ID = L_0.ID AND localized_1.locale = SESSION_CONTEXT('LOCALE'))
+WITH ASSOCIATIONS (
+  MANY TO MANY JOIN product_catalog_materials_UnitOfMeasures_texts AS texts ON (texts.ID = ID),
+  MANY TO ONE JOIN product_catalog_materials_UnitOfMeasures_texts AS localized ON (localized.ID = ID AND localized.locale = SESSION_CONTEXT('LOCALE'))
+)

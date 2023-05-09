@@ -1,0 +1,10 @@
+VIEW localized_CatProd_Reviews AS SELECT
+  ProductReview_0.ID,
+  ProductReview_0.Name,
+  ProductReview_0.Rating,
+  ProductReview_0.Comment,
+  ProductReview_0.Product_ID
+FROM localized_product_catalog_materials_ProductReview AS ProductReview_0
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN localized_CatProd_Products AS "PRODUCT" ON ("PRODUCT".ID = Product_ID)
+)

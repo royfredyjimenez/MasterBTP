@@ -1,0 +1,8 @@
+VIEW ManageOrders_GetOrders AS SELECT
+  Orders_0.ClientEmail,
+  Orders_0.FirstName,
+  Orders_0.LastName,
+  Orders_0.CreatedOn,
+  Orders_0.Reviewed,
+  Orders_0.Approved
+FROM com_test_Orders AS Orders_0

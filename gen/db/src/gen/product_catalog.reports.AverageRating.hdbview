@@ -1,0 +1,5 @@
+VIEW product_catalog_reports_AverageRating AS SELECT
+  ProductReview_0.Product_ID AS ProductId,
+  avg(ProductReview_0.Rating) AS AverageRating
+FROM product_catalog_materials_ProductReview AS ProductReview_0
+GROUP BY ProductReview_0.Product_ID

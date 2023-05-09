@@ -1,0 +1,34 @@
+VIEW localized_product_catalog_materials_Products AS SELECT
+  L_0.createdAt,
+  L_0.createdBy,
+  L_0.modifiedAt,
+  L_0.modifiedBy,
+  L_0.ID,
+  coalesce(localized_1.Name, L_0.Name) AS Name,
+  coalesce(localized_1.Description, L_0.Description) AS Description,
+  L_0.ImageUrl,
+  L_0.ReleaseDate,
+  L_0.CreationDate,
+  L_0.DiscontinuedDate,
+  L_0.Price,
+  L_0.Height,
+  L_0.Width,
+  L_0."DEPTH",
+  L_0.Quantity,
+  L_0.Supplier_ID,
+  L_0.UnitOfMeasure_ID,
+  L_0.Currency_ID,
+  L_0.DimensionUnits_ID,
+  L_0.Category_ID
+FROM (product_catalog_materials_Products AS L_0 LEFT JOIN product_catalog_materials_Products_texts AS localized_1 ON localized_1.ID = L_0.ID AND localized_1.locale = SESSION_CONTEXT('LOCALE'))
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN localized_product_catalog_sales_Suppliers AS Supplier ON (Supplier.ID = Supplier_ID),
+  MANY TO ONE JOIN localized_product_catalog_materials_UnitOfMeasures AS UnitOfMeasure ON (UnitOfMeasure.ID = UnitOfMeasure_ID),
+  MANY TO ONE JOIN localized_product_catalog_materials_Currencies AS Currency ON (Currency.ID = Currency_ID),
+  MANY TO ONE JOIN localized_product_catalog_materials_DimensionUnits AS DimensionUnits ON (DimensionUnits.ID = DimensionUnits_ID),
+  MANY TO ONE JOIN localized_product_catalog_materials_Categories AS Category ON (Category.ID = Category_ID),
+  MANY TO MANY JOIN localized_product_catalog_sales_SalesData AS SalesData ON (SalesData.Product_ID = ID),
+  MANY TO MANY JOIN localized_product_catalog_materials_ProductReview AS Reviews ON (Reviews.Product_ID = ID),
+  MANY TO MANY JOIN product_catalog_materials_Products_texts AS texts ON (texts.ID = ID),
+  MANY TO ONE JOIN product_catalog_materials_Products_texts AS localized ON (localized.ID = ID AND localized.locale = SESSION_CONTEXT('LOCALE'))
+)

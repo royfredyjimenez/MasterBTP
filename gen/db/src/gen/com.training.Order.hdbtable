@@ -1,0 +1,5 @@
+COLUMN TABLE com_training_Order (
+  clientGender NVARCHAR(5000),
+  status INTEGER,
+  priority NVARCHAR(5000)
+)

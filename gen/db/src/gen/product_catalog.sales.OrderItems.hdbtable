@@ -1,0 +1,10 @@
+COLUMN TABLE product_catalog_sales_OrderItems (
+  ID NVARCHAR(36) NOT NULL,
+  Order_ID NVARCHAR(36),
+  Product_ID NVARCHAR(36),
+  Quantity INTEGER,
+  PRIMARY KEY(ID)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN product_catalog_sales_Orders AS "ORDER" ON ("ORDER".ID = Order_ID),
+  MANY TO ONE JOIN product_catalog_materials_Products AS "PRODUCT" ON ("PRODUCT".ID = Product_ID)
+)

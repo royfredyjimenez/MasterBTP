@@ -1,0 +1,9 @@
+COLUMN TABLE com_training_StudentCourse (
+  ID NVARCHAR(36) NOT NULL,
+  Student_ID NVARCHAR(36),
+  Course_ID NVARCHAR(36),
+  PRIMARY KEY(ID)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN com_training_Student AS Student ON (Student.ID = Student_ID),
+  MANY TO ONE JOIN com_training_Course AS Course ON (Course.ID = Course_ID)
+)
