@@ -1,6 +1,0 @@
-COLUMN TABLE com_training_Course (
-  ID NVARCHAR(36) NOT NULL,
-  PRIMARY KEY(ID)
-) WITH ASSOCIATIONS (
-  MANY TO MANY JOIN com_training_StudentCourse AS Student ON (Student.Course_ID = ID)
-)

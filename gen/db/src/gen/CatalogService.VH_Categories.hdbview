@@ -1,4 +1,0 @@
-VIEW CatalogService_VH_Categories AS SELECT
-  Categories_0.ID AS Code,
-  Categories_0.Name AS "TEXT"
-FROM product_catalog_materials_Categories AS Categories_0

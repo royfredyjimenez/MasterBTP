@@ -1,6 +1,0 @@
-VIEW CatProd_Products_texts AS SELECT
-  texts_0.locale,
-  texts_0.ID,
-  texts_0.Name,
-  texts_0.Description
-FROM product_catalog_materials_Products_texts AS texts_0

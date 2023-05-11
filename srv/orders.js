@@ -26,7 +26,9 @@ module.exports = (srv) => {
                     LastName: req.data.LastName,
                     CreatedOn: req.data.CreatedOn,
                     Reviewed: req.data.Reviewed,
-                    Approved: req.data.Approved
+                    Approved: req.data.Approved,
+                    Country: req.data.Country,
+                    Status : req.data.Status
                 })
             )
             .then((resolve, reject) => {

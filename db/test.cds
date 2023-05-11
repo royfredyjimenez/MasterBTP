@@ -8,4 +8,6 @@ entity Orders {
         CreatedOn   : Date;
         Reviewed    : Boolean;
         Approved    : Boolean;
+        Country     : String(2);
+        Status      : String(1);  
 }

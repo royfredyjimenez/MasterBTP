@@ -1,6 +1,0 @@
-COLUMN TABLE product_catalog_materials_StockAvailability_texts (
-  locale NVARCHAR(14) NOT NULL,
-  ID INTEGER NOT NULL,
-  Description NVARCHAR(5000),
-  PRIMARY KEY(locale, ID)
-)

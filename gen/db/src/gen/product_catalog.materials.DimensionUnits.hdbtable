@@ -1,8 +1,0 @@
-COLUMN TABLE product_catalog_materials_DimensionUnits (
-  ID NVARCHAR(2) NOT NULL,
-  Description NVARCHAR(5000),
-  PRIMARY KEY(ID)
-) WITH ASSOCIATIONS (
-  MANY TO MANY JOIN product_catalog_materials_DimensionUnits_texts AS texts ON (texts.ID = ID),
-  MANY TO ONE JOIN product_catalog_materials_DimensionUnits_texts AS localized ON (localized.ID = ID AND localized.locale = SESSION_CONTEXT('LOCALE'))
-)

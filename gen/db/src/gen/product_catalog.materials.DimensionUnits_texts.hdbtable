@@ -1,6 +1,0 @@
-COLUMN TABLE product_catalog_materials_DimensionUnits_texts (
-  locale NVARCHAR(14) NOT NULL,
-  ID NVARCHAR(2) NOT NULL,
-  Description NVARCHAR(5000),
-  PRIMARY KEY(locale, ID)
-)

@@ -30,7 +30,7 @@ entity Orders {
         CreatedOn   : Date;
         Reviewed    : Boolean;
         Approved    : Boolean;
-        Country     : Country;
+        Country     : Country; 
         Status      : String(1);
 }
 

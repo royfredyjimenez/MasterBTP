@@ -80,7 +80,7 @@
       ]
     },
     "features": {
-      "graphql": true
+    "in_memory_db": true
     },
     "protocols": {
       "graphql": {
@@ -90,7 +90,10 @@
     },
     "requires": {
       "db": {
-        "kind": "hana-cloud"
+        "kind": "sqlite",
+        "credentials": {
+          "database": ":memory:"
+        }  
       },
       "hana": {
         "deploy-format": "hdbtable"

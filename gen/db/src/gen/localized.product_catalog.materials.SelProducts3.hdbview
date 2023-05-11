@@ -1,7 +1,0 @@
-VIEW localized_product_catalog_materials_SelProducts3 AS SELECT
-  ProductReview_1.Rating,
-  Products_0.Name,
-  sum(Products_0.Price) AS TotalPrice
-FROM (localized_product_catalog_materials_Products AS Products_0 LEFT JOIN localized_product_catalog_materials_ProductReview AS ProductReview_1 ON Products_0.Name = ProductReview_1.Name)
-GROUP BY ProductReview_1.Rating, Products_0.Name
-ORDER BY Rating

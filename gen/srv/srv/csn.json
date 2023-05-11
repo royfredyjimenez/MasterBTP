@@ -2863,6 +2863,14 @@
         },
         "Approved": {
           "type": "cds.Boolean"
+        },
+        "Country": {
+          "type": "cds.String",
+          "length": 2
+        },
+        "Status": {
+          "type": "cds.String",
+          "length": 1
         }
       }
     },
@@ -3128,7 +3136,67 @@
             ]
           },
           "columns": [
-            "*",
+            {
+              "ref": [
+                "ID"
+              ]
+            },
+            {
+              "ref": [
+                "Name"
+              ],
+              "as": "ProdCutName"
+            },
+            {
+              "ref": [
+                "Description"
+              ]
+            },
+            {
+              "ref": [
+                "ImageUrl"
+              ]
+            },
+            {
+              "ref": [
+                "ReleaseDate"
+              ]
+            },
+            {
+              "ref": [
+                "CreationDate"
+              ]
+            },
+            {
+              "ref": [
+                "DiscontinuedDate"
+              ]
+            },
+            {
+              "ref": [
+                "Price"
+              ]
+            },
+            {
+              "ref": [
+                "Height"
+              ]
+            },
+            {
+              "ref": [
+                "Width"
+              ]
+            },
+            {
+              "ref": [
+                "Depth"
+              ]
+            },
+            {
+              "ref": [
+                "Quantity"
+              ]
+            },
             {
               "ref": [
                 "UnitOfMeasure"
@@ -3179,64 +3247,18 @@
         }
       },
       "elements": {
-        "createdAt": {
-          "@cds.on.insert": {
-            "=": "$now"
-          },
-          "@UI.HiddenFilter": true,
-          "@Core.Immutable": true,
-          "@title": "{i18n>CreatedAt}",
-          "@readonly": true,
-          "type": "cds.Timestamp"
-        },
-        "createdBy": {
-          "@cds.on.insert": {
-            "=": "$user"
-          },
-          "@UI.HiddenFilter": true,
-          "@Core.Immutable": true,
-          "@title": "{i18n>CreatedBy}",
-          "@readonly": true,
-          "@description": "{i18n>UserID.Description}",
-          "type": "User",
-          "length": 255
-        },
-        "modifiedAt": {
-          "@cds.on.insert": {
-            "=": "$now"
-          },
-          "@cds.on.update": {
-            "=": "$now"
-          },
-          "@UI.HiddenFilter": true,
-          "@title": "{i18n>ChangedAt}",
-          "@readonly": true,
-          "type": "cds.Timestamp"
-        },
-        "modifiedBy": {
-          "@cds.on.insert": {
-            "=": "$user"
-          },
-          "@cds.on.update": {
-            "=": "$user"
-          },
-          "@UI.HiddenFilter": true,
-          "@title": "{i18n>ChangedBy}",
-          "@readonly": true,
-          "@description": "{i18n>UserID.Description}",
-          "type": "User",
-          "length": 255
-        },
         "ID": {
           "key": true,
           "type": "cds.UUID"
         },
-        "Name": {
+        "ProdCutName": {
+          "@mandatory": true,
           "localized": true,
           "type": "cds.String",
           "notNull": true
         },
         "Description": {
+          "@mandatory": true,
           "localized": true,
           "type": "cds.String"
         },
@@ -3261,6 +3283,7 @@
           "type": "cds.DateTime"
         },
         "Price": {
+          "@mandatory": true,
           "type": "cds.Decimal",
           "precision": 16,
           "scale": 2
@@ -3286,154 +3309,14 @@
           "scale": 2
         },
         "Quantity": {
+          "@mandatory": true,
+          "@assert.range": [
+            0,
+            20
+          ],
           "type": "cds.Decimal",
           "precision": 16,
           "scale": 2
-        },
-        "Supplier": {
-          "type": "cds.Association",
-          "target": "CatProd.Supplier",
-          "keys": [
-            {
-              "ref": [
-                "ID"
-              ]
-            }
-          ]
-        },
-        "UnitOfMeasure": {
-          "type": "cds.Association",
-          "target": "CatProd.VH_UnitOfMeasure",
-          "keys": [
-            {
-              "ref": [
-                "Code"
-              ],
-              "as": "ID"
-            }
-          ]
-        },
-        "Currency": {
-          "type": "cds.Association",
-          "target": "product_catalog.materials.Currencies",
-          "keys": [
-            {
-              "ref": [
-                "ID"
-              ]
-            }
-          ]
-        },
-        "DimensionUnits": {
-          "type": "cds.Association",
-          "target": "product_catalog.materials.DimensionUnits",
-          "keys": [
-            {
-              "ref": [
-                "ID"
-              ]
-            }
-          ]
-        },
-        "Category": {
-          "@readonly": true,
-          "localized": true,
-          "type": "cds.String"
-        },
-        "SalesData": {
-          "type": "cds.Association",
-          "cardinality": {
-            "max": "*"
-          },
-          "target": "product_catalog.sales.SalesData",
-          "on": [
-            {
-              "ref": [
-                "SalesData",
-                "Product"
-              ]
-            },
-            "=",
-            {
-              "ref": [
-                "$self"
-              ]
-            }
-          ]
-        },
-        "Reviews": {
-          "type": "cds.Association",
-          "cardinality": {
-            "max": "*"
-          },
-          "target": "CatProd.Reviews",
-          "on": [
-            {
-              "ref": [
-                "Reviews",
-                "Product"
-              ]
-            },
-            "=",
-            {
-              "ref": [
-                "$self"
-              ]
-            }
-          ]
-        },
-        "texts": {
-          "type": "cds.Composition",
-          "cardinality": {
-            "max": "*"
-          },
-          "target": "CatProd.Products.texts",
-          "on": [
-            {
-              "ref": [
-                "texts",
-                "ID"
-              ]
-            },
-            "=",
-            {
-              "ref": [
-                "ID"
-              ]
-            }
-          ]
-        },
-        "localized": {
-          "type": "cds.Association",
-          "target": "CatProd.Products.texts",
-          "on": [
-            {
-              "ref": [
-                "localized",
-                "ID"
-              ]
-            },
-            "=",
-            {
-              "ref": [
-                "ID"
-              ]
-            },
-            "and",
-            {
-              "ref": [
-                "localized",
-                "locale"
-              ]
-            },
-            "=",
-            {
-              "ref": [
-                "$user",
-                "locale"
-              ]
-            }
-          ]
         },
         "ToUnitOfMeasure": {
           "@mandatory": true,
@@ -3473,6 +3356,11 @@
             }
           ]
         },
+        "Category": {
+          "@readonly": true,
+          "localized": true,
+          "type": "cds.String"
+        },
         "ToDimesionUnit": {
           "@mandatory": true,
           "type": "cds.Association",
@@ -3481,6 +3369,59 @@
             {
               "ref": [
                 "ID"
+              ]
+            }
+          ]
+        },
+        "SalesData": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "product_catalog.sales.SalesData",
+          "on": [
+            {
+              "ref": [
+                "SalesData",
+                "Product"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        },
+        "Supplier": {
+          "type": "cds.Association",
+          "target": "CatProd.Supplier",
+          "keys": [
+            {
+              "ref": [
+                "ID"
+              ]
+            }
+          ]
+        },
+        "Reviews": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "CatProd.Reviews",
+          "on": [
+            {
+              "ref": [
+                "Reviews",
+                "Product"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
               ]
             }
           ]
@@ -5190,11 +5131,11 @@
         }
       }
     },
-    "ManageOrders": {
+    "ManageOrder": {
       "@source": "srv/orders.cds",
       "kind": "service"
     },
-    "ManageOrders.GetOrders": {
+    "ManageOrder.GetOrders": {
       "kind": "entity",
       "projection": {
         "from": {
@@ -5225,14 +5166,22 @@
         },
         "Approved": {
           "type": "cds.Boolean"
+        },
+        "Country": {
+          "type": "cds.String",
+          "length": 2
+        },
+        "Status": {
+          "type": "cds.String",
+          "length": 1
         }
       }
     },
-    "ManageOrdersx": {
+    "ManageOrders": {
       "@source": "srv/ordersx.cds",
       "kind": "service"
     },
-    "ManageOrdersx.cancelOrderReturn": {
+    "ManageOrders.cancelOrderReturn": {
       "kind": "type",
       "elements": {
         "status": {
@@ -5247,7 +5196,7 @@
         }
       }
     },
-    "ManageOrdersx.Orders": {
+    "ManageOrders.Orders": {
       "kind": "entity",
       "projection": {
         "from": {
@@ -5283,7 +5232,7 @@
           "@title": "{i18n>Country}",
           "@description": "{i18n>CountryCode.Description}",
           "type": "Country",
-          "target": "ManageOrdersx.Countries",
+          "target": "ManageOrders.Countries",
           "keys": [
             {
               "ref": [
@@ -5321,7 +5270,7 @@
             }
           },
           "returns": {
-            "type": "ManageOrdersx.cancelOrderReturn"
+            "type": "ManageOrders.cancelOrderReturn"
           }
         }
       }
@@ -6478,41 +6427,7 @@
         }
       }
     },
-    "CatProd.Products.texts": {
-      "kind": "entity",
-      "@cds.autoexposed": true,
-      "@odata.draft.enabled": false,
-      "projection": {
-        "from": {
-          "ref": [
-            "product_catalog.materials.Products.texts"
-          ]
-        }
-      },
-      "elements": {
-        "locale": {
-          "@title": "{i18n>LanguageCode}",
-          "key": true,
-          "type": "sap.common.Locale",
-          "length": 14
-        },
-        "ID": {
-          "@odata.containment.ignore": true,
-          "key": true,
-          "type": "cds.UUID"
-        },
-        "Name": {
-          "localized": null,
-          "type": "cds.String",
-          "notNull": true
-        },
-        "Description": {
-          "localized": null,
-          "type": "cds.String"
-        }
-      }
-    },
-    "ManageOrdersx.Countries": {
+    "ManageOrders.Countries": {
       "kind": "entity",
       "@cds.autoexposed": true,
       "@cds.autoexpose": true,
@@ -6559,7 +6474,7 @@
           "cardinality": {
             "max": "*"
           },
-          "target": "ManageOrdersx.Countries.texts",
+          "target": "ManageOrders.Countries.texts",
           "on": [
             {
               "ref": [
@@ -6577,7 +6492,7 @@
         },
         "localized": {
           "type": "cds.Association",
-          "target": "ManageOrdersx.Countries.texts",
+          "target": "ManageOrders.Countries.texts",
           "on": [
             {
               "ref": [
@@ -6609,7 +6524,7 @@
         }
       }
     },
-    "ManageOrdersx.Countries.texts": {
+    "ManageOrders.Countries.texts": {
       "kind": "entity",
       "@cds.autoexposed": true,
       "@odata.draft.enabled": false,

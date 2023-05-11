@@ -1,5 +1,0 @@
-VIEW product_catalog_materials_SelProducts2 AS SELECT
-  Products_0.Name,
-  Products_0.Price,
-  Products_0.Quantity
-FROM product_catalog_materials_Products AS Products_0

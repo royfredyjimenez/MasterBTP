@@ -23,7 +23,7 @@ service CatProd1 {
 service CatProd {
     entity Products          as
         select from Product.materials.Products {
-            /*
+           
             ID,
             Name           as ProdCutName     @mandatory,
             Description                       @mandatory,
@@ -42,8 +42,7 @@ service CatProd {
                     20.00
                 ]
             ),
-            */
-            *,
+          
             UnitOfMeasure  as ToUnitOfMeasure @mandatory,
             Currency       as ToCurrency      @mandatory,
             Category       as FoCategory      @mandatory,

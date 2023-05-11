@@ -1,7 +1,0 @@
-VIEW localized_Reports_EntityExists AS SELECT
-  Products_0.Name
-FROM localized_product_catalog_materials_Products AS Products_0
-WHERE EXISTS (SELECT
-    1 AS dummy
-  FROM localized_product_catalog_sales_Suppliers AS _Supplier_exists_1
-  WHERE _Supplier_exists_1.ID = Products_0.Supplier_ID AND _Supplier_exists_1.Name = 'Exotic Liquids')

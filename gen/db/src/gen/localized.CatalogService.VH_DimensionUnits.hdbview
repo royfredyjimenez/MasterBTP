@@ -1,4 +1,0 @@
-VIEW localized_CatalogService_VH_DimensionUnits AS SELECT
-  DimensionUnits_0.ID AS Code,
-  DimensionUnits_0.Description AS "TEXT"
-FROM localized_product_catalog_materials_DimensionUnits AS DimensionUnits_0

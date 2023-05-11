@@ -1,8 +1,0 @@
-VIEW CatProd_StockAvailability AS SELECT
-  StockAvailability_0.ID,
-  StockAvailability_0.Description,
-  StockAvailability_0.Product_ID AS ToProduct_ID
-FROM product_catalog_materials_StockAvailability AS StockAvailability_0
-WITH ASSOCIATIONS (
-  MANY TO ONE JOIN CatProd_Products AS ToProduct ON (ToProduct.ID = ToProduct_ID)
-)

@@ -1,4 +1,0 @@
-VIEW Reports_EntityCasting AS SELECT
-  CAST(Products_0.Price AS INTEGER) AS Price,
-  Products_0.Price AS Price2
-FROM product_catalog_materials_Products AS Products_0

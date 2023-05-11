@@ -1,4 +1,0 @@
-VIEW localized_product_catalog_materials_ProjProducts3 AS SELECT
-  Products_0.ReleaseDate,
-  Products_0.Name
-FROM localized_product_catalog_materials_Products AS Products_0
