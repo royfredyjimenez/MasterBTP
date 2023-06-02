@@ -5949,6 +5949,10 @@
           "type": "cds.String",
           "length": 5
         },
+        "minorUnit": {
+          "@title": "{i18n>CurrencyMinorUnit}",
+          "type": "cds.Int16"
+        },
         "texts": {
           "type": "cds.Composition",
           "cardinality": {
@@ -6568,7 +6572,7 @@
     }
   },
   "meta": {
-    "creator": "CDS Compiler v3.6.2",
+    "creator": "CDS Compiler v3.9.2",
     "flavor": "inferred"
   },
   "$version": "2.0"

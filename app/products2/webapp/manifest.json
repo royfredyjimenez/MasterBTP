@@ -1,7 +1,7 @@
 {
     "_version": "1.49.0",
     "sap.app": {
-        "id": "com.logali.es.product1",
+        "id": "com.logali.es.products2",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -12,8 +12,8 @@
         "resources": "resources.json",
         "sourceTemplate": {
             "id": "@sap/generator-fiori:lrop",
-            "version": "1.9.2",
-            "toolsId": "a05449dc-3115-4031-bad4-f405b302cb15"
+            "version": "1.9.7",
+            "toolsId": "af61afed-72da-4efa-b143-339ca615e954"
         },
         "dataSources": {
             "mainService": {
@@ -28,7 +28,7 @@
         },
         "crossNavigation": {
             "inbounds": {
-                "com-logali-es-product1-inbound": {
+                "com-logali-es-products2-inbound": {
                     "signature": {
                         "parameters": {},
                         "additionalParameters": "allowed"
@@ -61,7 +61,7 @@
     "sap.ui5": {
         "flexEnabled": true,
         "dependencies": {
-            "minUI5Version": "1.112.1",
+            "minUI5Version": "1.114.0",
             "libs": {
                 "sap.m": {},
                 "sap.ui.core": {},
@@ -77,7 +77,7 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "com.logali.es.product1.i18n.i18n"
+                    "bundleName": "com.logali.es.products2.i18n.i18n"
                 }
             },
             "": {

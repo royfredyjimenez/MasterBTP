@@ -97,7 +97,7 @@
                 </Key>
                 <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
                 <Property Name="Name" Type="Edm.String" Nullable="false"/>
-                <Property Name="Email" Type="Edm.String"/>
+                <Property Name="Email" Type="Edm.String" DefaultValue="correo@logaligroup.com"/>
                 <Property Name="Phone" Type="Edm.String"/>
                 <Property Name="Fax" Type="Edm.String"/>
                 <NavigationProperty Name="ToProduct" Type="Collection(CatalogService.Products)" Partner="Supplier"/>
