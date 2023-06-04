@@ -3,108 +3,110 @@ ID: cap-products
 description: A simple CAP project.
 version: 1.0.0
 modules:
-- name: cap-products-srv
-  type: nodejs
-  path: gen/srv
-  requires:
-  - name: cap-products-db
-  provides:
-  - name: srv-api
-    properties:
-      srv-url: ${default-url}
-  parameters:
-    buildpack: nodejs_buildpack
-  build-parameters:
-    builder: npm-ci
-- name: cap-products-db-deployer
-  type: hdb
-  path: gen/db
-  requires:
-  - name: cap-products-db
-  parameters:
-    buildpack: nodejs_buildpack
-- name: cap-products-app-content
-  type: com.sap.application.content
-  path: .
-  requires:
-  - name: cap-products-repo-host
-    parameters:
-      content-target: true
-  build-parameters:
-    build-result: resources
+  - name: cap-products-srv
+    type: nodejs
+    path: gen/srv
     requires:
-    - artifacts:
-      - comlogaliesproduct1.zip
-      name: comlogaliesproduct1
-      target-path: resources/
-    - artifacts:
-      - comlogaliesproducts2.zip
-      name: comlogaliesproducts2
-      target-path: resources/
-- name: comlogaliesproduct1
-  type: html5
-  path: app/product1
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: comlogaliesproducts2
-  type: html5
-  path: app/products2
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
+      - name: cap-products-db
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    parameters:
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+  - name: cap-products-db-deployer
+    type: hdb
+    path: gen/db
+    requires:
+      - name: cap-products-db
+    parameters:
+      buildpack: nodejs_buildpack
+  - name: cap-products-app-content
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: cap-products-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - comlogaliesproduct1.zip
+          name: comlogaliesproduct1
+          target-path: resources/
+        - artifacts:
+            - comlogaliesproducts2.zip
+          name: comlogaliesproducts2
+          target-path: resources/
+  - name: comlogaliesproduct1
+    type: html5
+    path: app/product1
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
+  - name: comlogaliesproducts2
+    type: html5
+    path: app/products2
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
 resources:
-- name: cap-products-db
-  type: com.sap.xs.hdi-container
-  parameters:
-    service: hana
-    service-plan: hdi-shared
-- name: cap-products-repo-host
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-name: cap-products-html5-srv
-    service-plan: app-host
-- name: cap-products-destination-service
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      HTML5Runtime_enabled: false
-      init_data:
-        instance:
-          destinations:
-          - Authentication: NoAuthentication
-            Name: ui5
-            ProxyType: Internet
-            Type: HTTP
-            URL: https://ui5.sap.com
-          - Authentication: NoAuthentication
-            HTML5.DynamicDestination: true
-            HTML5.ForwardAuthToken: true
-            Name: cap-products-srv-api
-            ProxyType: Internet
-            Type: HTTP
-            URL: ~{srv-api/srv-url}
-          existing_destinations_policy: update
-      version: 1.0.0
-    service: destination
-    service-name: cap-products-destination-service
-    service-plan: lite
-  requires:
-  - name: srv-api
+  - name: cap-products-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: cap-products-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-name: cap-products-html5-srv
+      service-plan: app-host
+  - name: cap-products-destination-service
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: false
+        init_data:
+          instance:
+            destinations:
+              - Authentication: NoAuthentication
+                Name: ui5
+                ProxyType: Internet
+                Type: HTTP
+                URL: https://ui5.sap.com
+              - Authentication: NoAuthentication
+                HTML5.DynamicDestination: true
+                HTML5.ForwardAuthToken: true
+                Name: cap-products-srv-api
+                ProxyType: Internet
+                Type: HTTP
+                URL: ~{srv-api/srv-url}
+            existing_destinations_policy: update
+        version: 1.0.0
+      service: destination
+      service-name: cap-products-destination-service
+      service-plan: lite
+    requires:
+      - name: srv-api
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
 build-parameters:
   before-all:
-  - builder: custom
-    commands:
-    - npx -p @sap/cds-dk cds build --production
+    - builder: custom
+      commands:
+        - npx -p @sap/cds-dk cds build --production

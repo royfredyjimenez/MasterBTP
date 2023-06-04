@@ -1,118 +1,118 @@
 {
-    "name": "cap-products",
-    "version": "1.0.0",
-    "description": "A simple CAP project.",
-    "repository": "<Add your repository here>",
-    "license": "UNLICENSED",
-    "private": true,
-    "dependencies": {
-        "@cap-js/graphql": "^0.5.0",
-        "@graphql-tools/schema": "^9.0.17",
-        "@sap-cloud-sdk/http-client": "^2.15.0",
-        "@sap/artifact-management": "^1.11.1",
-        "@sap/artifact-management-base": "^1.20.2",
-        "@sap/artifact-management-base-types": "^1.20.2",
-        "@sap/artifact-management-mdkplugin": "^1.20.2",
-        "@sap/cds": "^6",
-        "@sap/cds-odata-v2-adapter-proxy": "^1.9.7",
-        "@sap/create-hana-database-artifact": "^1.10.0",
-        "@sap/hdbext": "^7.7.2",
-        "@sap/xsenv": "^3.4.0",
-        "cors": "^2.8.5",
-        "dotenv": "^10.0.0",
-        "express": "^4",
-        "express-graphql": "^0.12.0",
-        "graph": "^0.2.0",
-        "hdb": "^0.19.5",
-        "swagger-ui-express": "^4.6.2"
+  "name": "cap-products",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@cap-js/graphql": "^0.5.0",
+    "@graphql-tools/schema": "^9.0.17",
+    "@sap-cloud-sdk/http-client": "^2.15.0",
+    "@sap/artifact-management": "^1.11.1",
+    "@sap/artifact-management-base": "^1.20.2",
+    "@sap/artifact-management-base-types": "^1.20.2",
+    "@sap/artifact-management-mdkplugin": "^1.20.2",
+    "@sap/cds": "^6",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.7",
+    "@sap/create-hana-database-artifact": "^1.10.0",
+    "@sap/hdbext": "^7.7.2",
+    "@sap/xsenv": "^3.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4",
+    "express-graphql": "^0.12.0",
+    "graph": "^0.2.0",
+    "hdb": "^0.19.0",
+    "swagger-ui-express": "^4.6.2"
+  },
+  "devDependencies": {
+    "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
+    "@sap/ux-specification": "^1.108.6",
+    "@sapui5/ts-types": "^1.92.2",
+    "cds-swagger-ui-express": "^0.6.0",
+    "eslint": "^7.32.0",
+    "rimraf": "^3.0.2",
+    "sqlite3": "^5.0.4"
+  },
+  "scripts": {
+    "start": "cds watch",
+    "watch-product1": "cds watch --open product1/webapp/index.html?sap-ui-xx-viewCache=false",
+    "undeploy": "cf undeploy cap-products --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+    "watch-products2": "cds watch --open products2/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "engines": {
+    "node": "^16.15"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "es2020": true,
+      "node": true,
+      "jest": true,
+      "mocha": true
     },
-    "devDependencies": {
-        "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
-        "@sap/ux-specification": "^1.108.6",
-        "@sapui5/ts-types": "^1.92.2",
-        "cds-swagger-ui-express": "^0.6.0",
-        "eslint": "^7.32.0",
-        "rimraf": "^3.0.2",
-        "sqlite3": "^5.0.4"
+    "globals": {
+      "SELECT": true,
+      "INSERT": true,
+      "UPDATE": true,
+      "DELETE": true,
+      "CREATE": true,
+      "DROP": true,
+      "CDL": true,
+      "CQL": true,
+      "CXL": true,
+      "cds": true
     },
-    "scripts": {
-        "start": "cds watch",
-        "watch-product1": "cds watch --open product1/webapp/index.html?sap-ui-xx-viewCache=false",
-        "undeploy": "cf undeploy cap-products --delete-services --delete-service-keys --delete-service-brokers",
-        "build": "rimraf resources mta_archives && mbt build --mtar archive",
-        "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
-        "watch-products2": "cds watch --open products2/webapp/index.html?sap-ui-xx-viewCache=false"
+    "rules": {
+      "no-console": "off",
+      "require-atomic-updates": "off"
+    }
+  },
+  "cds": {
+    "i18n": {
+      "default_language": "es",
+      "folders": [
+        "_i18n",
+        "i18n",
+        "assets/i18n"
+      ]
     },
-    "engines": {
-        "node": "^16.15"
+    "features": {
+      "in_memory_db": true
     },
-    "eslintConfig": {
-        "extends": "eslint:recommended",
-        "env": {
-            "es2020": true,
-            "node": true,
-            "jest": true,
-            "mocha": true
-        },
-        "globals": {
-            "SELECT": true,
-            "INSERT": true,
-            "UPDATE": true,
-            "DELETE": true,
-            "CREATE": true,
-            "DROP": true,
-            "CDL": true,
-            "CQL": true,
-            "CXL": true,
-            "cds": true
-        },
-        "rules": {
-            "no-console": "off",
-            "require-atomic-updates": "off"
+    "protocols": {
+      "graphql": {
+        "path": "/graphql",
+        "impl": "@cap-js/graphql"
+      }
+    },
+    "requires": {
+      "db": {
+        "kind": "sql",
+        "credentials": {
+          "database": ":memory:"
         }
-    },
-    "cds": {
-        "i18n": {
-            "default_language": "es",
-            "folders": [
-                "_i18n",
-                "i18n",
-                "assets/i18n"
-            ]
-        },
-        "features": {
-            "in_memory_db": true
-        },
-        "protocols": {
-            "graphql": {
-                "path": "/graphql",
-                "impl": "@cap-js/graphql"
-            }
-        },
-        "requires": {
-            "db": {
-                "kind": "sqlite",
-                "credentials": {
-                    "database": ":memory:"
-                }
-            },
-            "hana": {
-                "deploy-format": "hdbtable"
-            },
-            "sapbackend": {
-                "kind": "odata-v2",
-                "model": "srv/external/sapbackend",
-                "credentials": {
-                    "requestTimeout": 30000,
-                    "url": "http://erp13.sap4practice.com:9037/sap/opu/odata/sap/YSAPUI5_SRV_01/",
-                    "authentication": "NoAuthentication"
-                }
-            }
+      },
+      "hana": {
+        "deploy-format": "hdbtable"
+      },
+      "sapbackend": {
+        "kind": "odata-v2",
+        "model": "srv/external/sapbackend",
+        "credentials": {
+          "requestTimeout": 30000,
+          "url": "http://erp13.sap4practice.com:9037/sap/opu/odata/sap/YSAPUI5_SRV_01/",
+          "authentication": "NoAuthentication"
         }
-    },
-    "sapux": [
-        "app/product",
-        "app/product",
-        "app/products2"
-    ]
+      }
+    }
+  },
+  "sapux": [
+    "app/product",
+    "app/product",
+    "app/products2"
+  ]
 }
